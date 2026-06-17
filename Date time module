@@ -1,0 +1,30 @@
+from datetime import datetime, timedelta
+
+time = {'London': '08:00',
+		'New York': '13:00',
+		'Tokyo': '00:00',
+		'Sydney': '22:00'}
+
+
+def convert_sessions(time, user_time):
+		time_format = '%H:%M'
+		hour = timedelta(hours=user_time)
+
+		for session, open_time in time.items():
+			# session = 'London'
+			# open_time = '08:00' | This is called tuple unpacking
+			parsed = datetime.strptime(open_time, time_format)
+			#datetime.strptime converts the string into an object.
+			#open_time is the string being converted
+			#time_format tells python what to expect
+			#Take the string '08:00', read it as hours and minutes,
+			# and store it as a Python datetime object called parsed
+			local = parsed + hour
+			print(f'{session}: {local.strftime(time_format)}') #converts local into text, with the way python should read it in brackets.
+try:
+	user_time = int(input('What is your UTC offset: '))
+
+except ValueError:
+	print('Input will only accept UTC offsets')
+
+convert_sessions(time, user_time)
