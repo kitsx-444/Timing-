@@ -1,10 +1,25 @@
+# A trader wants to know the time a major session opens in their local time. What the hell, this is an
+# actual program I could use genuinely; great exercise Claude.
+
+# - `striptime` is for reading dates.
+# - `timedelta` is for changing dates
+
+# First create the dictionary.
+# Next, create the input variables.
+# try:
+# Then I have to convert the values into Python objects. I will use strptime within the function to convert the dictionary inside a loop and assign them
+# their own variables.
+# Within the function I will create a variable named hour, and in it use timedelta(hour=input)
+# I will calculate the session times and print them.
+# except: the likely error will be receiving a string and not a number. A value error is most likely.
+# I will call the function.
+
 from datetime import datetime, timedelta
 
 time = {'London': '08:00',
 		'New York': '13:00',
 		'Tokyo': '00:00',
 		'Sydney': '22:00'}
-
 
 def convert_sessions(time, user_time):
 		time_format = '%H:%M'
@@ -24,7 +39,8 @@ def convert_sessions(time, user_time):
 try:
 	user_time = int(input('What is your UTC offset: '))
 
-except ValueError:
+except (ValueError, NameError):
 	print('Input will only accept UTC offsets')
+	exit()
 
 convert_sessions(time, user_time)
